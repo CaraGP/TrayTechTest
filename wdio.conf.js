@@ -1,3 +1,6 @@
+const { generate } = require('multiple-cucumber-html-reporter');
+const { removeSync } = require('fs-extra');
+
 exports.config = {
     //
     // ====================
@@ -127,18 +130,20 @@ exports.config = {
     reporters: ['cucumberjs-json'],
     
     cucumberOpts: {
+        backtrace: false,
         name: [],
         // <string[]> module used for processing required features
         requireModule: ['@babel/register'],
         // <boolean> Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> abort the run on first failure
-        failFast: true,
+        failFast: false,
         // <boolean> Enable this config to treat undefined definitions as
         // warnings
         ignoreUndefinedDefinitions: true,
         // <boolean> hide step definition snippets for pending steps
-        snippets: false,        
+        snippets: false,
+        snippetSyntax: undefined,        
         // <boolean> hide source uris
         source: true,
         require: [
@@ -165,8 +170,10 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+        // Remove the `.tmp/` folder that holds the json and report files
+        removeSync('.tmp/');
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -272,8 +279,16 @@ exports.config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+    onComplete: function(exitCode, config, capabilities, results) {
+        // Generate the report when it all tests are done
+    generate({
+        // Required
+        // This part needs to be the same path where you store the JSON files
+        // default = '.tmp/json/'
+        jsonDir: '.tmp/json/',
+        reportPath: '.tmp/report/',
+    });
+    },
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session

@@ -21,6 +21,7 @@
     "@wdio/spec-reporter": "^6.1.23",
     "@wdio/sync": "^6.2.0",
     "chromedriver": "^83.0.1",
+    "fs-extra": "^9.0.1",
     "multiple-cucumber-html-reporter": "^1.17.0",
     "ts-node": "^8.10.2",
     "tsconfig-paths": "^3.9.0",
