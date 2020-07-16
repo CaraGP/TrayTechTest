@@ -17,7 +17,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/x.feature'
+        './src/features/**/*.feature',
     ],
     // Patterns to exclude.
     exclude: [
@@ -89,7 +89,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: '/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -124,21 +124,33 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
-
-
+    reporters: ['cucumberjs-json'],
     
     cucumberOpts: {
+        name: [],
         // <string[]> module used for processing required features
         requireModule: ['@babel/register'],
-        // <boolean< Treat ambiguous definitions as errors
+        // <boolean> Treat ambiguous definitions as errors
         failAmbiguousDefinitions: true,
         // <boolean> abort the run on first failure
         failFast: true,
         // <boolean> Enable this config to treat undefined definitions as
         // warnings
-        ignoreUndefinedDefinitions: false,
-
+        ignoreUndefinedDefinitions: true,
+        // <boolean> hide step definition snippets for pending steps
+        snippets: false,        
+        // <boolean> hide source uris
+        source: true,
+        require: [
+            './src/steps/given.js',
+            './src/steps/then.js',
+            // Or search a (sub)folder for JS files with a wildcard
+            // works since version 1.1 of the wdio-cucumber-framework
+            // './src/**/*.js',
+        ],
+        // <boolean> fail if there are any undefined or pending steps
+        strict: true,
+        timeout: 20000,
      },
     //
     // =====
