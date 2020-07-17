@@ -1,6 +1,7 @@
-import { Given } from 'cucumber';
+import { Given } from "cucumber";
+import { getUrlMapping } from "../support/mappings";
 
-Given(
-    /^I navigate to "([^"]*)?"$/,
-    (url) => browser.url(url),
-);
+Given(/^I navigate to "([^"]*)?"$/, (mappingName) => {
+  browser.url(getUrlMapping(mappingName));
+  browser.saveScreenshot("./outputs/screenshotBrowser.png");
+});

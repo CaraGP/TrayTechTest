@@ -1,15 +1,13 @@
-'use strict';
-
 const findElement = (selector) => {
-    const element = $(selector);
-    const isExisting = element.isExisting();
+  const element = $(selector);
+  const isExisting = element.isExisting();
 
-    if (!isExisting) {
-        throw new Error(`"${selector}" doesn't exist.`);
-    }
-    
-    return element;
-}
+  if (!isExisting) {
+    throw new Error(`"${selector}" doesn't exist.`);
+  }
+
+  return element;
+};
 
 export default findElement;
 
