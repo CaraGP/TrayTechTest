@@ -1,9 +1,12 @@
-const findElement = (selector) => {
+import { getElementMapping } from "../mappings";
+
+const findElement = (mappingName) => {
+  const selector = getElementMapping(mappingName);
   const element = $(selector);
   const isExisting = element.isExisting();
 
   if (!isExisting) {
-    throw new Error(`"${selector}" doesn't exist.`);
+    throw new Error(`Could not find "${mappingName}" using "${selector}"`);
   }
 
   return element;

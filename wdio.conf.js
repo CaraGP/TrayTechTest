@@ -145,6 +145,7 @@ exports.config = {
     source: true,
     require: [
       "./src/steps/given.js",
+      "./src/steps/when.js",
       "./src/steps/then.js",
       // Or search a (sub)folder for JS files with a wildcard
       // works since version 1.1 of the wdio-cucumber-framework
