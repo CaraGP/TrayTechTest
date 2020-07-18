@@ -1,6 +1,8 @@
 const { generate } = require("multiple-cucumber-html-reporter");
 const { removeSync } = require("fs-extra");
 
+const reportDir = ".test-report/";
+
 exports.config = {
   //
   // ====================
@@ -126,8 +128,16 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter.html
-  reporters: ["spec", "cucumberjs-json"],
-
+  reporters: [
+    "spec",
+    [
+      "cucumberjs-json",
+      {
+        jsonFolder: reportDir + "json/",
+        language: "en",
+      },
+    ],
+  ],
   cucumberOpts: {
     // <string[]> module used for processing required features
     requireModule: [
@@ -175,8 +185,8 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
-    // Remove the `.tmp/` folder that holds the json and report files
-    removeSync(".tmp/");
+    // Remove the report folder that holds the json and report files
+    removeSync(reportDir);
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -246,6 +256,26 @@ exports.config = {
    * Hook that gets executed after the suite has ended
    * @param {Object} suite suite details
    */
+  afterStep: function (
+    { uri, feature, step },
+    context,
+    { error, result, duration, passed }
+  ) {
+    if (!passed) {
+      browser.saveScreenshot("./outputs/screenshotOnFail.png");
+    }
+    console.log("afterStep goes here", passed);
+  },
+  afterScenario: function (
+    uri,
+    feature,
+    scenario,
+    result,
+    sourceLocation,
+    context
+  ) {
+    console.log("afterScenario goes here", result);
+  },
   // afterSuite: function (suite) {
   // },
   /**
@@ -283,13 +313,12 @@ exports.config = {
    * @param {<Object>} results object containing test results
    */
   onComplete: function (exitCode, config, capabilities, results) {
-    // Generate the report when it all tests are done
+    // Generate the report when all tests are done
     generate({
       // Required
       // This part needs to be the same path where you store the JSON files
-      // default = '.tmp/json/'
-      jsonDir: ".tmp/json/",
-      reportPath: ".tmp/report/",
+      jsonDir: reportDir + "json/",
+      reportPath: reportDir + "report/",
     });
   },
   /**
