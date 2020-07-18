@@ -130,7 +130,13 @@ exports.config = {
 
   cucumberOpts: {
     // <string[]> module used for processing required features
-    requireModule: ["@babel/register"],
+    requireModule: [
+      "@babel/register",
+      "tsconfig-paths/register",
+      () => {
+        require("ts-node").register({ files: true });
+      },
+    ],
     // <boolean> Treat ambiguous definitions as errors
     failAmbiguousDefinitions: true,
     // <boolean> abort the run on first failure
@@ -144,9 +150,9 @@ exports.config = {
     // <boolean> hide source uris
     source: true,
     require: [
-      "./src/steps/given.js",
-      "./src/steps/when.js",
-      "./src/steps/then.js",
+      "./src/steps/given.ts",
+      "./src/steps/when.ts",
+      "./src/steps/then.ts",
       // Or search a (sub)folder for JS files with a wildcard
       // works since version 1.1 of the wdio-cucumber-framework
       // './src/**/*.js',

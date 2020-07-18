@@ -29,5 +29,7 @@
     "wdio-chromedriver-service": "^6.0.3",
     "wdio-cucumberjs-json-reporter": "^2.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@types/cucumber": "^6.0.1"
+  }
 }

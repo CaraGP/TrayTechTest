@@ -1,7 +1,7 @@
 import { When } from "cucumber";
 import { getElementMapping } from "../support/mappings";
 
-When(/^I login using my valid "([^"]*)?"$/, (credentials) => {
+When(/^I login using my valid "([^"]*)?"$/, (credentials: string) => {
   if (credentials === "standard user credentials") {
     $(getElementMapping("username")).addValue("standard_user");
     $(getElementMapping("password")).addValue("secret_sauce");

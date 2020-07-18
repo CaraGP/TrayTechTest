@@ -3,7 +3,7 @@ const urlMappings = new Map([
   ["saucedemo.com", "https://www.saucedemo.com/"],
 ]);
 
-const getUrlMapping = (expectedMapping) => {
+const getUrlMapping = (expectedMapping: string): string => {
   if (urlMappings.has(expectedMapping)) {
     return urlMappings.get(expectedMapping);
   } else {
@@ -21,7 +21,7 @@ const elementMappings = new Map([
   ["Products list", "#inventory_container"],
 ]);
 
-const getElementMapping = (expectedMapping) => {
+const getElementMapping = (expectedMapping: string): string => {
   if (elementMappings.has(expectedMapping)) {
     return elementMappings.get(expectedMapping);
   } else {

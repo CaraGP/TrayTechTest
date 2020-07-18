@@ -1,6 +1,6 @@
 import { getElementMapping } from "../mappings";
 
-const findElement = (mappingName) => {
+const findElement = (mappingName: string): WebdriverIO.Element => {
   const selector = getElementMapping(mappingName);
   const element = $(selector);
   const isExisting = element.isExisting();
