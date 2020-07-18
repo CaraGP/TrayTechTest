@@ -18,7 +18,7 @@ const elementMappings = new Map([
   ["username", 'input[data-test="username"]'],
   ["password", 'input[data-test="password"]'],
   ["login button", "#login-button"],
-  ["Shopping list", "#inventory_container"],
+  ["Products list", "#inventory_container"],
 ]);
 
 const getElementMapping = (expectedMapping) => {

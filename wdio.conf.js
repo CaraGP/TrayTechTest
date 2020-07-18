@@ -139,8 +139,8 @@ exports.config = {
     // warnings
     ignoreUndefinedDefinitions: true,
     // <boolean> hide step definition snippets for pending steps
-    snippets: false,
-    snippetSyntax: undefined,
+    snippets: true,
+    //snippetSyntax: undefined,
     // <boolean> hide source uris
     source: true,
     require: [
