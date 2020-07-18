@@ -1,14 +1,14 @@
 import { When } from "cucumber";
-import { getElementMapping } from "../support/mappings";
+import standardLogin from "src/support/helpers/login";
+import findElement from "../support/helpers/findElement";
 
-When(/^I login using my valid "([^"]*)?"$/, (credentials: string) => {
-  if (credentials === "standard user credentials") {
-    $(getElementMapping("username")).addValue("standard_user");
-    $(getElementMapping("password")).addValue("secret_sauce");
-    $(getElementMapping("login button")).click();
-  } else {
-    throw new Error(`"${credentials}" are different to what was expected`);
+When(/^I login using my valid "([^"]*)?"$/, standardLogin);
+
+When(
+  /^I select the "([^"]*)?" option from the "([^"]*)?"$/,
+  (optionText: string, elementMapping: string) => {
+    findElement(elementMapping).selectByVisibleText(optionText);
+
+    browser.saveScreenshot("./outputs/screenshotSort.png");
   }
-
-  browser.saveScreenshot("./outputs/screenshotCredentials.png");
-});
+);

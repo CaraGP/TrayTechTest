@@ -187,6 +187,7 @@ exports.config = {
   onPrepare: function (config, capabilities) {
     // Remove the report folder that holds the json and report files
     removeSync(reportDir);
+    removeSync("outputs/*");
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -264,18 +265,16 @@ exports.config = {
     if (!passed) {
       browser.saveScreenshot("./outputs/screenshotOnFail.png");
     }
-    console.log("afterStep goes here", passed);
   },
-  afterScenario: function (
-    uri,
-    feature,
-    scenario,
-    result,
-    sourceLocation,
-    context
-  ) {
-    console.log("afterScenario goes here", result);
-  },
+  // afterScenario: function (
+  //   uri,
+  //   feature,
+  //   scenario,
+  //   result,
+  //   sourceLocation,
+  //   context
+  // ) {
+  // },
   // afterSuite: function (suite) {
   // },
   /**
