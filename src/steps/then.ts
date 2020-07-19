@@ -1,6 +1,6 @@
 import { Then } from "cucumber";
 import findElement from "../support/helpers/findElement";
-import { getElementMapping } from "src/support/mappings";
+import findElements from "../support/helpers/findElements";
 
 Then(/^I should see the "([^"]*)?"$/, (mappingName: string) => {
   findElement(mappingName);
@@ -9,11 +9,10 @@ Then(/^I should see the "([^"]*)?"$/, (mappingName: string) => {
 });
 
 Then(
-  /^the "([^"]*)?" is updated to display products in "([^"]*)?"$/,
-  (elementMapping: string, orderMapping: string) => {
-    findElement(elementMapping);
+  /^the Products list is sorted by "([^"]*)?" in descending order$/,
+  (orderMapping: string) => {
     let prices = [];
-    const listItems = $$(getElementMapping("Price"));
+    const listItems = findElements(orderMapping);
 
     for (let i = 0; i < listItems.length; i++) {
       prices.push(parseInt(listItems[i].getText().substring(1), 10));
@@ -23,7 +22,7 @@ Then(
 
     if (JSON.stringify(prices) != JSON.stringify(sortedPrices)) {
       throw new Error(
-        `It doesn't look like "${elementMapping}" has been sorted to "${orderMapping}"`
+        `It doesn't look like the Products list has been sorted to "${orderMapping}"`
       );
     }
 
@@ -31,7 +30,6 @@ Then(
   }
 );
 
-//the "Shopping basket item counter" displays 2
 Then(
   /^the "([^"]*)?" displays "([^"]*)?"$/,
   (elementMapping: string, expectedText: string) => {

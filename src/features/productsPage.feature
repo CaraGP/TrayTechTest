@@ -8,7 +8,7 @@ Feature: Products
 Scenario: Sort the products by Price (high to low)
 Given I have successfully logged into "saucedemo.com" with my "standard user credentials"
 When I select the "Price (high to low)" option from the "Sort dropdown"
-Then the "Products inventory" is updated to display products in "descending price order"
+Then the Products list is sorted by "Price" in descending order
 
 Scenario: Add the two cheapest products to your basket
 Given I have successfully logged into "saucedemo.com" with my "standard user credentials"

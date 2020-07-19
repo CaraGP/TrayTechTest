@@ -20,7 +20,6 @@ const elementMappings = new Map([
   ["login button", "#login-button"],
   ["Products list", "#inventory_container"],
   ["Sort dropdown", ".product_sort_container"],
-  ["Products inventory", ".inventory_list"],
   ["Price", ".inventory_item_price"],
   ["Add to cart button", ".btn_inventory"],
   ["Product", ".inventory_item"],
