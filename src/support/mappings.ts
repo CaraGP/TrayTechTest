@@ -24,6 +24,12 @@ const elementMappings = new Map([
   ["Add to cart button", ".btn_inventory"],
   ["Product", ".inventory_item"],
   ["Shopping basket item counter", ".shopping_cart_badge"],
+  ["Shopping basket icon", "#shopping_cart_container"],
+  ["Shopping basket list", "#cart_contents_container"],
+  ["Basket product", ".cart_item"],
+  ["Remove item button", ".cart_button"],
+  ["Checkout button", ".checkout_button"],
+  ["Checkout form", "#checkout_info_container"],
 ]);
 
 const getElementMapping = (expectedMapping: string): string => {

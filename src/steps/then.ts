@@ -44,3 +44,18 @@ Then(
     browser.saveScreenshot("./outputs/screenshotUpdateBasket.png");
   }
 );
+
+Then(
+  /^I should see (\d+) "([^"]*)?"$/,
+  (amount: number, expectedElement: string) => {
+    const foundProducts = findElements(expectedElement).length;
+
+    if (foundProducts < amount || foundProducts > amount) {
+      throw new Error(
+        `Was expecting only "${amount}" product, but displaying "${foundProducts}"`
+      );
+    }
+
+    browser.saveScreenshot("./outputs/screenshotProductsInBasket.png");
+  }
+);
