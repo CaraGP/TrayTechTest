@@ -1,8 +1,12 @@
 import { getElementMapping } from "../mappings";
+import { BrowserObject } from "@wdio/sync";
 
-const findElement = (mappingName: string): WebdriverIO.Element => {
+const findElement = (
+  mappingName: string,
+  parentElement: WebdriverIO.Element | BrowserObject = browser
+): WebdriverIO.Element => {
   const selector = getElementMapping(mappingName);
-  const element = $(selector);
+  const element = parentElement.$(selector);
   const isExisting = element.isExisting();
 
   if (!isExisting) {
@@ -13,7 +17,3 @@ const findElement = (mappingName: string): WebdriverIO.Element => {
 };
 
 export default findElement;
-
-//import findElement from './helpers/findElement';
-
-//import findElement, {findElements} from './helpers/findElement';

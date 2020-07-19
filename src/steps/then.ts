@@ -27,6 +27,22 @@ Then(
       );
     }
 
-    browser.saveScreenshot("./outputs/screenshotUpdate.png");
+    browser.saveScreenshot("./outputs/screenshotUpdateList.png");
+  }
+);
+
+//the "Shopping basket item counter" displays 2
+Then(
+  /^the "([^"]*)?" displays "([^"]*)?"$/,
+  (elementMapping: string, expectedText: string) => {
+    const actualText = findElement(elementMapping).getText();
+
+    if (actualText !== expectedText) {
+      throw new Error(
+        `Was expecting "${elementMapping}" to display "${expectedText}" but it's displaying "${actualText}"`
+      );
+    }
+
+    browser.saveScreenshot("./outputs/screenshotUpdateBasket.png");
   }
 );
