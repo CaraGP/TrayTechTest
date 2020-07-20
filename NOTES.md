@@ -2,41 +2,43 @@
 
 # General Notes
 
-Currently everything requested by the task documentation has been fullfilled. I could have extended the suite to cover fails and edgecases, but I wasn't sure it would be needed necessarily as they were things not covered by the task scope itself - hopefully covering them with just a mention would be enough to show that I have at least covered these aspects with my general thought process, even if I haven't taken any futher steps to implement them.
+Currently everything requested by the task documentation has been fullfilled (or so I believe/have interpretted it). I could have extended the suite to cover fails and edgecases, but I wasn't sure it would be needed necessarily as they were things not covered by the task scope itself - hopefully covering them with just a mention here would be enough to show that I have at least covered these aspects with my general thought process, even if I haven't taken any immediate steps to implement them.
 
-Just a few more bits of tidying up needed before I would say this task is complete and the project can be submitted for review. Hopefully will list everything in the following To-Do section and removed when done.
+I have included a To Do list here, which cover any extras I would have liked/should look into more, to hopefully help with what I mentioned above.
 
 This test suite so far only covers the "vanilla" Happy Path and really should be extended to cover overall functionality pertaining to the documented user journey and not just the user journey itself.
+
+Just in case its useful to note, this suite runs in Sync mode.
 
 ## Site Tidbits
 
 Thought i'd mention any thoughts picked up through the creation of this project and exploring the test site.
 
-- Only found 1 data-test attribute; it would be better to have more of these implemented to help mitigate any class/element name changes over time.
+- Only found 2 data-test attributes (username & password); it would be better to have more of these implemented to help mitigate any class/element name changes over time.
 - There is a different between the Products and the Shopping Cart price bar where the latter doesn't display/have the Currency symbol. Would be good to have had consistency here.
 - Some of the Product names and discriptions are interesting; assuming the random call-like functions are for other test tasks.
-- Your Cart page, ideally would have a message displayed encouraging the user to add stuff to their cart, if they have navigated to this page before actually adding any products. Seems weird to display the headings/labels of the cart list, if in essence the list doesn't really exist yet. Could be currently interpreted by the user as being broken, if they've somehow forgotten that they haven't actually added anything yet.
+- The Cart page, ideally would have a message displayed encouraging the user to add stuff to their cart, if they have navigated to this page before actually adding any products. Seems weird to display the headings/labels of the cart list, if in essence the list doesn't really exist yet. Could be currently interpreted by the user as being broken, if they've somehow forgotten that they haven't actually added anything yet.
 - As it seems like the colour scheme is prodominently red and has no green, this point is probably just my own musing/opinion, but having the Checkout button on the Shopping cart page always being red and active regardless of the cart list state, seems a little odd to me. I think it would be better to have the Checkout button only activate if the user has items in the list and are actually ready to checkout. This would probably have been a question asked during planning/upon seeing the designs for the first time, etc.
 
 # To-Do
 
 _Not in priority order_
 
-- Change reporters. Hoping to find better reporters that work with wdio6; if not, these ones will have to do, but I'm not exactly a fan and the multiple-cucumber-html-reporter doesn't fully work with 6 yet, i.e. can't seem to add screenshots to the report.
-- Clear screenshot commands from individual steps.
-- Clean up any dependances. Remove Mocha. Sort out what should be a dependancy and remain dev dependancies.
+- Change reporters. I have a few issues with the current reporters; maybe I didn't set the right options correctly, but I know that the multiple-cucumber-html-reporter doesn't work properly with wdio6.
+- Clean up any dependances. Sort out what should be a dependancy and remain dev dependancies.
 - Add docker compose so that the project runs in a container and users won't have to worry about needing particular versions of anything on their local machines.
-- Update if statements to expects for assertions.
-- Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome.
-- Add obvious fail and edgecases for particular scenarios covered, plus any extras which would be nice to have in order to help with full confidence all functionality covered by the E2E user journey has been covered and fully tested.
+- Get wdio expect to work. Couldn't seem to get it to behave correctly before; created my own assertion helper instead.
+- Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome. Could add something like browserstack; if it works with wdio6.
+- Add obvious fail and edgecases for the particular scenarios covered, plus any extras which would be nice to have in order to help with confidence in the suite and expected behaviours.
+- Pull out the username and password details and possibily add them as SSM variables which are stored somewhere like AWS, for extra protection. It would not be wise to keep private/sensitive details directly in the project.
 
 # Known Issues
 
-## Suite sometimes Fails to run (Major)
+## Suite tends to fail when loading up (Major)
 
-When finishing up the implementation of the tests required to cover the requested E2E user journey, the suite started to frequently break. I wasn't able to work out the cause at the time, and initially it seemed that just changing the default waitforTimeout from 10secs to 30secs "fixed" the issue; but that however has proven not to be the case.
+When finishing up the implementation of the tests required to cover the requested E2E user journey, the suite started to frequently break. I wasn't able to work out the cause at the time, and initially it seemed that just changing the default waitforTimeout from 10secs to 30secs "fixed" the issue; but that however has proven not to be the case. I feared trying to delve into the issue would lead to a dark rabbit hole, so chose to continue with clean up/fixing more minor/scenario issues.
 
----
+## Copy of error I received when the suite failed, for reference:
 
 > Execution of 5 spec files started at 2020-07-20T13:51:43.020Z
 
