@@ -7,12 +7,12 @@ Feature: Shopping basket
 # 5. Remove the cheapest product from your basket
 
 Scenario: Use the shopping basket icon to navigate to the shopping cart page
-Given I have successfully logged into "saucedemo.com" with my "standard user credentials"
+Given I have successfully logged into "Saucedemo.com" with my "Standard User credentials"
 When I click on the "Shopping basket icon"
 Then I should see the "Shopping basket list"
 
 Scenario: Remove the cheapest product from the shopping basket
-Given I have successfully logged into "saucedemo.com" with my "standard user credentials"
+Given I have successfully logged into "Saucedemo.com" with my "Standard User credentials"
 And I have clicked on the "Add to cart button" on the 1st "Product"
 And I have clicked on the "Add to cart button" on the 2nd "Product"
 And I have clicked on the "Shopping basket icon"

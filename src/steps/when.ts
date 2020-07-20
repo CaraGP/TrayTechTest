@@ -9,8 +9,6 @@ When(
   /^I (?:select|have selected) the "([^"]*)?" option from the "([^"]*)?"$/,
   (optionText: string, elementMapping: string) => {
     findElement(elementMapping).selectByVisibleText(optionText);
-
-    browser.saveScreenshot("./outputs/screenshotSort.png");
   }
 );
 
@@ -20,8 +18,6 @@ When(
     const elements = findElements(parentMapping);
     const childElement = findElement(childMapping, elements[position - 1]);
     childElement.click();
-
-    browser.saveScreenshot("./outputs/screenshotAdd.png");
   }
 );
 
@@ -29,8 +25,6 @@ When(
   /^I (?:click|have clicked) on the "([^"]*)?"$/,
   (elementMapping: string) => {
     findElement(elementMapping).click();
-
-    browser.saveScreenshot("./outputs/screenshotBasket.png");
   }
 );
 
@@ -45,8 +39,6 @@ When(
     });
 
     findElement(childMapping, listItems[0]).click();
-
-    browser.saveScreenshot("./outputs/screenshotRemoveProduct.png");
   }
 );
 
@@ -56,7 +48,5 @@ When(
     reversePosition = reversePosition || 1;
     const listItems = findElements(elementMapping);
     listItems[listItems.length - reversePosition].click();
-
-    browser.saveScreenshot("./outputs/screenshotLastItem.png");
   }
 );

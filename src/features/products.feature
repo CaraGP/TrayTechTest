@@ -6,12 +6,12 @@ Feature: Products
 # 3. Add the two cheapest products to your basket
 
 Scenario: Sort the products by Price (high to low)
-Given I have successfully logged into "saucedemo.com" with my "standard user credentials"
+Given I have successfully logged into "Saucedemo.com" with my "Standard User credentials"
 When I select the "Price (high to low)" option from the "Sort dropdown"
 Then the Products list is sorted by "Price" in descending order
 
 Scenario: Add the two cheapest products to your basket
-Given I have successfully logged into "saucedemo.com" with my "standard user credentials"
+Given I have successfully logged into "Saucedemo.com" with my "Standard User credentials"
 And I have selected the "Price (low to high)" option from the "Sort dropdown"
 When I click on the "Add to cart button" on the 1st "Product"
 And I click on the "Add to cart button" on the 2nd "Product"

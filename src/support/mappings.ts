@@ -1,7 +1,4 @@
-const urlMappings = new Map([
-  ["Google Home Page", "www.google.com"],
-  ["saucedemo.com", "https://www.saucedemo.com/"],
-]);
+const urlMappings = new Map([["Saucedemo.com", "https://www.saucedemo.com/"]]);
 
 const getUrlMapping = (expectedMapping: string): string => {
   if (urlMappings.has(expectedMapping)) {
@@ -14,10 +11,9 @@ const getUrlMapping = (expectedMapping: string): string => {
 };
 
 const elementMappings = new Map([
-  ["Google Logo", "#hplogo"],
-  ["username", 'input[data-test="username"]'],
-  ["password", 'input[data-test="password"]'],
-  ["login button", "#login-button"],
+  ["Username", 'input[data-test="username"]'],
+  ["Password", 'input[data-test="password"]'],
+  ["Login button", "#login-button"],
   ["Products list", "#inventory_container"],
   ["Sort dropdown", ".product_sort_container"],
   ["Price", ".inventory_item_price"],

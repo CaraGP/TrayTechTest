@@ -5,6 +5,6 @@ Feature: Login to https://www.saucedemo.com/ using the "standard_user" account
 # 1. Login to https://www.saucedemo.com/ using the "standard_user" account
 
 Scenario: Successfully login to saucedemo.com as a standard user
-Given I navigate to "saucedemo.com"
-When I login using my valid "standard user credentials"
+Given I navigate to "Saucedemo.com"
+When I login using my valid "Standard User credentials"
 Then I should see the "Products list"

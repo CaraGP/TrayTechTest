@@ -4,8 +4,6 @@ import findElements from "../support/helpers/findElements";
 
 Then(/^I should see the "([^"]*)?"$/, (mappingName: string) => {
   findElement(mappingName);
-
-  browser.saveScreenshot("./outputs/screenshotElement.png");
 });
 
 Then(
@@ -26,7 +24,7 @@ Then(
       );
     }
 
-    browser.saveScreenshot("./outputs/screenshotUpdateList.png");
+    browser.saveScreenshot("./.screenshots/screenshotUpdateList.png");
   }
 );
 
@@ -41,7 +39,7 @@ Then(
       );
     }
 
-    browser.saveScreenshot("./outputs/screenshotUpdateBasket.png");
+    browser.saveScreenshot("./.screenshots/screenshotUpdateBasket.png");
   }
 );
 
@@ -52,10 +50,10 @@ Then(
 
     if (foundProducts < amount || foundProducts > amount) {
       throw new Error(
-        `Was expecting only "${amount}" product, but displaying "${foundProducts}"`
+        `Was expecting only "${amount}" product(s), but displaying "${foundProducts}"`
       );
     }
 
-    browser.saveScreenshot("./outputs/screenshotProductsInBasket.png");
+    browser.saveScreenshot("./.screenshots/screenshotProductsInBasket.png");
   }
 );
