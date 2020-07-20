@@ -12,7 +12,7 @@ The project codebase has been hosted on GitHub and been cloned from [here.](http
 
 All the tests are written in [Gherkin syntax](https://cucumber.io/docs/gherkin/reference/) and all test files can be found and should be added in `./src/features/*` with the file ending `.feature`.
 
-The tests are currently run in sync mode, set to run 3 chrome instances at the same time.
+The tests are currently run in Sync mode, set to run 3 chrome instances at the same time.
 
 ## How to run the full suite of tests
 

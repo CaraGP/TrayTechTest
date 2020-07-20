@@ -8,8 +8,6 @@ I have included a To Do list here, which cover any extras I would have liked/sho
 
 This test suite so far only covers the "vanilla" Happy Path and really should be extended to cover overall functionality pertaining to the documented user journey and not just the user journey itself.
 
-Just in case its useful to note, this suite runs in Sync mode.
-
 ## Site Tidbits
 
 Thought i'd mention any thoughts picked up through the creation of this project and exploring the test site.
