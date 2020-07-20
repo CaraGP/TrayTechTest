@@ -53,7 +53,7 @@ exports.config = {
       // maxInstances can get overwritten per capability. So if you have an in-house Selenium
       // grid with only 5 firefox instances available you can make sure that not more than
       // 5 instances get started at a time.
-      maxInstances: 5,
+      maxInstances: 3,
       //
       browserName: "chrome",
       // If outputDir is provided WebdriverIO can capture driver session logs
@@ -96,7 +96,7 @@ exports.config = {
   baseUrl: "/",
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 30000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response

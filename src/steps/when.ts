@@ -15,7 +15,7 @@ When(
 );
 
 When(
-  /^I (?:click|have clicked) on the "([^"]*)?" on the (\d+)(?:st|nd) "([^"]*)?"$/,
+  /^I (?:click|have clicked) on the "([^"]*)?" on the (\d+)(?:st|nd|rd|th) "([^"]*)?"$/,
   (childMapping: string, position: number, parentMapping: string) => {
     const elements = findElements(parentMapping);
     const childElement = findElement(childMapping, elements[position - 1]);
@@ -35,7 +35,7 @@ When(
 );
 
 When(
-  /^I click on the "([^"]*)?" on the cheapest "([^"]*)?"$/,
+  /^I (?:click|have clicked) on the "([^"]*)?" on the cheapest "([^"]*)?"$/,
   (childMapping: string, parentMapping: string) => {
     const listItems = findElements(parentMapping);
     listItems.sort((productA, productB) => {
@@ -47,5 +47,16 @@ When(
     findElement(childMapping, listItems[0]).click();
 
     browser.saveScreenshot("./outputs/screenshotRemoveProduct.png");
+  }
+);
+
+When(
+  /^I have clicked on the(?: (\d+)(?:nd|rd|th) to)? last "([^"]*)?"$/,
+  (reversePosition: number, elementMapping: string) => {
+    reversePosition = reversePosition || 1;
+    const listItems = findElements(elementMapping);
+    listItems[listItems.length - reversePosition].click();
+
+    browser.saveScreenshot("./outputs/screenshotLastItem.png");
   }
 );
