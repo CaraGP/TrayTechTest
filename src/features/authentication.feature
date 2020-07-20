@@ -1,4 +1,4 @@
-Feature: Login to https://www.saucedemo.com/ using the "standard_user" account
+Feature: Login
     As a user
     I want to make sure I can login successfully to saucedemo.com
 
