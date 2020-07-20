@@ -1,6 +1,7 @@
 import { Then } from "cucumber";
 import findElement from "../support/helpers/findElement";
 import findElements from "../support/helpers/findElements";
+import { expectEqual } from "../support/helpers/assertions";
 
 Then(/^I should see the "([^"]*)?"$/, (mappingName: string) => {
   findElement(mappingName);
@@ -16,15 +17,13 @@ Then(
       prices.push(parseInt(listItems[i].getText().substring(1), 10));
     }
 
-    const sortedPrices = [...prices].sort((a, b) => a + b);
+    const sortedPrices = [...prices].sort((a, b) => a - b).reverse();
 
-    if (JSON.stringify(prices) != JSON.stringify(sortedPrices)) {
-      throw new Error(
-        `It doesn't look like the Products list has been sorted to "${orderMapping}"`
-      );
-    }
-
-    browser.saveScreenshot("./.screenshots/screenshotUpdateList.png");
+    expectEqual(
+      JSON.stringify(prices),
+      JSON.stringify(sortedPrices),
+      `It doesn't look like the Products list has been sorted to descending "${orderMapping}" order`
+    );
   }
 );
 
@@ -33,13 +32,11 @@ Then(
   (elementMapping: string, expectedText: string) => {
     const actualText = findElement(elementMapping).getText();
 
-    if (actualText !== expectedText) {
-      throw new Error(
-        `Was expecting "${elementMapping}" to display "${expectedText}" but it's displaying "${actualText}"`
-      );
-    }
-
-    browser.saveScreenshot("./.screenshots/screenshotUpdateBasket.png");
+    expectEqual(
+      actualText,
+      expectedText,
+      `Was expecting "${elementMapping}" to display "${expectedText}" but it's displaying "${actualText}"`
+    );
   }
 );
 
@@ -48,12 +45,10 @@ Then(
   (amount: number, expectedElement: string) => {
     const foundProducts = findElements(expectedElement).length;
 
-    if (foundProducts < amount || foundProducts > amount) {
-      throw new Error(
-        `Was expecting only "${amount}" product(s), but displaying "${foundProducts}"`
-      );
-    }
-
-    browser.saveScreenshot("./.screenshots/screenshotProductsInBasket.png");
+    expectEqual(
+      foundProducts,
+      amount,
+      `Was expecting only "${amount}" product(s), but displaying "${foundProducts}"`
+    );
   }
 );
