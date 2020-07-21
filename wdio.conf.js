@@ -1,7 +1,8 @@
 const { generate } = require("multiple-cucumber-html-reporter");
-const { removeSync } = require("fs-extra");
+const { removeSync, ensureDirSync } = require("fs-extra");
 
 const reportDir = ".test-report/";
+const screenshottDir = ".screenshots/";
 
 exports.config = {
   //
@@ -185,6 +186,9 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   onPrepare: function (config, capabilities) {
+    // Checks for Screenshot directory and adds it if not found
+    ensureDirSync(screenshottDir);
+
     // Remove the report folder that holds the json and report files
     removeSync(reportDir);
   },
