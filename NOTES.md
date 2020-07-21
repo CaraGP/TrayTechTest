@@ -14,17 +14,16 @@ Thought i'd mention any thoughts picked up through the creation of this project 
 
 - Only found 2 data-test attributes (username & password); it would be better to have more of these implemented to help mitigate any class/element name changes over time.
 - There is a different between the Products and the Shopping Cart price bar where the latter doesn't display/have the Currency symbol. Would be good to have had consistency here.
-- Some of the Product names and discriptions are interesting; assuming the random call-like functions are for other test tasks.
 - The Cart page, ideally would have a message displayed encouraging the user to add stuff to their cart, if they have navigated to this page before actually adding any products. Seems weird to display the headings/labels of the cart list, if in essence the list doesn't really exist yet. Could be currently interpreted by the user as being broken, if they've somehow forgotten that they haven't actually added anything yet.
-- As it seems like the colour scheme is prodominently red and has no green, this point is probably just my own musing/opinion, but having the Checkout button on the Shopping cart page always being red and active regardless of the cart list state, seems a little odd to me. I think it would be better to have the Checkout button only activate if the user has items in the list and are actually ready to checkout. This would probably have been a question asked during planning/upon seeing the designs for the first time, etc.
+- As it seems like the colour scheme is prodominently red and has no green, this point is probably just my own musing/opinion, but having the Checkout button on the Shopping cart page always being red and active regardless of the cart list state, seems a little odd. I think it would be better to have the Checkout button only activate if the user has items in the list and are actually ready to checkout. This would probably have been a question asked during planning/upon seeing the designs for the first time, etc.
 
-# To-Do
+# To-Do (What I would do for future iterations)
 
 _Not in priority order_
 
 - Add docker compose so that the project runs in a container and users won't have to worry about needing particular versions of anything on their local machines.
-- Get wdio expect to work. Couldn't seem to get it to behave correctly before; created my own assertion helper instead.
-- Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome. Could add something like browserstack; if it works with wdio6.
+- Get wdio expect to work. Couldn't seem to get it to behave correctly before; created my own assertion helper instead, in order to add an abstraction layer for easier implementation later.
+- Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome. Could add something like Browserstack.
 - Add obvious fail and edgecases for the particular scenarios covered, plus any extras which would be nice to have in order to help with confidence in the suite and expected behaviours.
 - Pull out the username and password details and possibily add them as SSM variables which are stored somewhere like AWS, for extra protection. It would not be wise to keep private/sensitive details directly in the project.
 
