@@ -150,7 +150,7 @@ exports.config = {
     // <boolean> Treat ambiguous definitions as errors
     failAmbiguousDefinitions: true,
     // <boolean> abort the run on first failure
-    failFast: false,
+    failFast: true,
     // <boolean> Enable this config to treat undefined definitions as
     // warnings
     ignoreUndefinedDefinitions: true,

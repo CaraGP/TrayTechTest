@@ -8,6 +8,12 @@ This project was built using [WebdriverIO 6](https://webdriver.io/docs/gettingst
 
 The project codebase has been hosted on GitHub and been cloned from [here.](https://github.com/CaraGP/TrayTechTest)
 
+This project uses npm, so to run please use the following command:
+
+```sh
+$ npm install
+```
+
 # Test Information
 
 All the tests are written in [Gherkin syntax](https://cucumber.io/docs/gherkin/reference/) and all test files can be found and should be added in `./src/features/*` with the file ending `.feature`.
