@@ -22,7 +22,6 @@ Thought i'd mention any thoughts picked up through the creation of this project 
 
 _Not in priority order_
 
-- Clean up any dependances.
 - Add docker compose so that the project runs in a container and users won't have to worry about needing particular versions of anything on their local machines.
 - Get wdio expect to work. Couldn't seem to get it to behave correctly before; created my own assertion helper instead.
 - Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome. Could add something like browserstack; if it works with wdio6.
