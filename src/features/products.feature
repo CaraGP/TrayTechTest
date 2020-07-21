@@ -14,5 +14,5 @@ Scenario: Add the two cheapest products to your basket
 Given I have successfully logged into "Saucedemo.com" with my "Standard User credentials"
 And I have selected the "Price (low to high)" option from the "Sort dropdown"
 When I click on the "Add to cart button" on the 1st "Product"
-And I click on the "Add to cart button" on the 2nd "Product"
+# And I click on the "Add to cart button" on the 2nd "Product"
 Then the "Shopping basket item counter" displays "2"

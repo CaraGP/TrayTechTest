@@ -1,7 +1,7 @@
 const { ensureDirSync } = require("fs-extra");
 const allure = require("allure-commandline");
 
-const screenshottDir = ".screenshots/";
+const screenshottDir = "screenshots/";
 
 exports.config = {
   //
@@ -268,7 +268,7 @@ exports.config = {
     // If the step has failed, take a screenshot and store it in the .screenshots dir
     if (!passed) {
       const timestamp = moment().format("YYYYMMDD-HHmmss.SSS");
-      const filepath = path.join("./.screenshots/", timestamp + ".png");
+      const filepath = path.join("./screenshots/", timestamp + ".png");
       browser.saveScreenshot(filepath);
       process.emit("test:screenshot", filepath);
     }

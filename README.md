@@ -6,9 +6,9 @@ This project was built using [WebdriverIO 6](https://webdriver.io/docs/gettingst
 
 # Getting Started
 
-The project codebase has been hosted on GitHub and been cloned from [here.](https://github.com/CaraGP/TrayTechTest)
+The project codebase has been hosted on GitHub and can be cloned from [here.](https://github.com/CaraGP/TrayTechTest)
 
-This project uses npm, so to run please use the following command:
+This project uses npm, so to install dependencies please use the following command:
 
 ```sh
 $ npm install
@@ -19,7 +19,9 @@ This project also uses the Allure Reporter, in order to review the report, you w
 - Java Runtime
 - Serve
 
-To serve the Allure Report
+_If you run the suite/any tests without Java installed, there will be an error and a pop-up prompt, but the tests will still run as expected._
+
+To serve the Allure Report locally:
 
 ```sh
 $ serve allure-report
@@ -63,8 +65,8 @@ They are currently separated by `given`, `when` and `then`.
 
 ## Adding screenshots on steps
 
-Currently the suite will generate a screenshot if there are any failed scenarios. However it is possible to simply add screenshots on steps regardless if they fail or pass: [wdio documentation for screenshots.](https://webdriver.io/docs/api/browser/saveScreenshot.html)
+Currently the suite will generate a screenshot if there are any failed steps. However it is possible to simply add screenshots on steps regardless if they fail or pass: [wdio documentation for screenshots.](https://webdriver.io/docs/api/browser/saveScreenshot.html)
 
 You can also take screenshots of particular elements rather than of the browser window: [wdio documentation for element screenshots.](https://webdriver.io/docs/api/element/saveScreenshot.html)
 
-Screenshots taken are stored in `./.screenshots`.
+Screenshots taken are stored in `./screenshots`.
