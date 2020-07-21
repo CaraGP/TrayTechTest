@@ -1,6 +1,6 @@
-const expectEqual = (
-  valueA: any,
-  valueB: any,
+const expectEqual = <T>(
+  valueA: T,
+  valueB: T,
   errorMessage: string = `Expected "${valueA}" to be equal to "${valueB}"`
 ): void => {
   if (valueA !== valueB) {

@@ -1,7 +1,6 @@
-const { generate } = require("multiple-cucumber-html-reporter");
-const { removeSync, ensureDirSync } = require("fs-extra");
+const { ensureDirSync } = require("fs-extra");
+const allure = require("allure-commandline");
 
-const reportDir = ".test-report/";
 const screenshottDir = ".screenshots/";
 
 exports.config = {
@@ -54,7 +53,7 @@ exports.config = {
       // maxInstances can get overwritten per capability. So if you have an in-house Selenium
       // grid with only 5 firefox instances available you can make sure that not more than
       // 5 instances get started at a time.
-      maxInstances: 3,
+      maxInstances: 1,
       //
       browserName: "chrome",
       // If outputDir is provided WebdriverIO can capture driver session logs
@@ -132,10 +131,11 @@ exports.config = {
   reporters: [
     "spec",
     [
-      "cucumberjs-json",
+      "allure",
       {
-        jsonFolder: reportDir + "json/",
-        language: "en",
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
       },
     ],
   ],
@@ -188,9 +188,6 @@ exports.config = {
   onPrepare: function (config, capabilities) {
     // Checks for Screenshot directory and adds it if not found
     ensureDirSync(screenshottDir);
-
-    // Remove the report folder that holds the json and report files
-    removeSync(reportDir);
   },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
@@ -268,12 +265,16 @@ exports.config = {
     const path = require("path");
     const moment = require("moment");
 
-    // If the step has failed, take a screenshot
+    // If the step has failed, take a screenshot and store it in the .screenshots dir
     if (!passed) {
       const timestamp = moment().format("YYYYMMDD-HHmmss.SSS");
       const filepath = path.join("./.screenshots/", timestamp + ".png");
       browser.saveScreenshot(filepath);
       process.emit("test:screenshot", filepath);
+    }
+    // this one is for the Allure Reporter
+    if (error) {
+      browser.takeScreenshot();
     }
   },
   // afterScenario: function (
@@ -321,13 +322,22 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  onComplete: function (exitCode, config, capabilities, results) {
-    // Generate the report when all tests are done
-    generate({
-      // Required
-      // This part needs to be the same path where you store the JSON files
-      jsonDir: reportDir + "json/",
-      reportPath: reportDir + "report/",
+  onComplete: function (exitCode, config, capabilities) {
+    const reportError = new Error("Could not generate Allure report");
+    const generation = allure(["generate", "allure-results", "--clean"]);
+    return new Promise((resolve, reject) => {
+      const generationTimeout = setTimeout(() => reject(reportError), 5000);
+
+      generation.on("exit", function (exitCode) {
+        clearTimeout(generationTimeout);
+
+        if (exitCode !== 0) {
+          return reject(reportError);
+        }
+
+        console.log("Allure report successfully generated");
+        resolve();
+      });
     });
   },
   /**

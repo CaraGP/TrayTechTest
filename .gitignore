@@ -1,4 +1,5 @@
 node_modules
 
-.test-report
 .screenshots
+allure-report
+allure-results

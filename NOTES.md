@@ -22,8 +22,7 @@ Thought i'd mention any thoughts picked up through the creation of this project 
 
 _Not in priority order_
 
-- Change reporters. I have a few issues with the current reporters; maybe I didn't set the right options correctly, but I know that the multiple-cucumber-html-reporter doesn't work properly with wdio6.
-- Clean up any dependances. Sort out what should be a dependancy and remain dev dependancies.
+- Clean up any dependances.
 - Add docker compose so that the project runs in a container and users won't have to worry about needing particular versions of anything on their local machines.
 - Get wdio expect to work. Couldn't seem to get it to behave correctly before; created my own assertion helper instead.
 - Update wdio config to implement other browsers so that the tests can run against them, rather than just run against chrome. Could add something like browserstack; if it works with wdio6.
@@ -32,11 +31,13 @@ _Not in priority order_
 
 # Known Issues
 
-## Suite tends to fail when loading up (Major)
+## Suite tends to fail when loading up, if max instances is set to more than 1 (Major)
 
 When finishing up the implementation of the tests required to cover the requested E2E user journey, the suite started to frequently break. I wasn't able to work out the cause at the time, and initially it seemed that just changing the default waitforTimeout from 10secs to 30secs "fixed" the issue; but that however has proven not to be the case. I feared trying to delve into the issue would lead to a dark rabbit hole, so chose to continue with clean up/fixing more minor/scenario issues.
 
-## Copy of error I received when the suite failed, for reference:
+Having changed the max instances to 1 seems to have mitigated this issue for now. It also only affected the full suite run. Individual test runs seem unaffected.
+
+_Copy of error I received when the suite failed, for reference:_
 
 > Execution of 5 spec files started at 2020-07-20T13:51:43.020Z
 
@@ -72,8 +73,4 @@ When finishing up the implementation of the tests required to cover the requeste
 
 ## Suite doesn't display pending step snippets (Minor)
 
-Doesn't look like the cucumberOpts in the wdio config is being fully respected. I've tried to get them to display but maybe its a wdio6 incompatitbility issue currently. Will try to find other reporters/addons to hopefully help with this issue.
-
-## Suite doesn't fail when there are pending steps (Minor)
-
-Again, this looks like a disrespected cucumberOpts issue. I've tried to set it to fail the suite if any of it is incomplete, but it's still deciding it wants to pass the suite evening with pending steps. It could also be that i've missed overriding the config that controls this feature.
+Not sure exactly why not, probably a config issue and i'm overlooking something(s).

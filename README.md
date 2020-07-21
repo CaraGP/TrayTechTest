@@ -14,11 +14,36 @@ This project uses npm, so to run please use the following command:
 $ npm install
 ```
 
+This project also uses the Allure Reporter, in order to review the report, you will need to have the following installed on your machine:
+
+- Java Runtime
+- Serve
+
+To serve the Allure Report
+
+```sh
+$ serve allure-report
+```
+
 # Test Information
 
 All the tests are written in [Gherkin syntax](https://cucumber.io/docs/gherkin/reference/) and all test files can be found and should be added in `./src/features/*` with the file ending `.feature`.
 
-The tests are currently run in Sync mode, set to run 3 chrome instances at the same time.
+The tests are currently run in Sync mode, set to run 1 chrome instance at a time.
+
+## To run the single E2E test
+
+_Created a single scenario to cover all steps as required by the test task_
+
+```sh
+$ npx wdio wdio.conf.js --spec ./src/features/E2ETest.feature
+```
+
+## How to run a single test
+
+```sh
+$ npx wdio wdio.conf.js --spec ./src/features/{featureName}.feature
+```
 
 ## How to run the full suite of tests
 
@@ -26,12 +51,6 @@ _Runs all feature files_
 
 ```sh
 $ npx wdio wdio.conf.js
-```
-
-## How to run a single test
-
-```sh
-$ npx wdio wdio.conf.js --spec ./src/features/{featureName}.feature
 ```
 
 ## Adding new steps
