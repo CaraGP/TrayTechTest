@@ -13,7 +13,7 @@ This test suite so far only covers the "vanilla" Happy Path and really should be
 Thought i'd mention any thoughts picked up through the creation of this project and exploring the test site.
 
 - Only found 2 data-test attributes (username & password); it would be better to have more of these implemented to help mitigate any class/element name changes over time.
-- There is a different between the Products and the Shopping Cart price bar where the latter doesn't display/have the Currency symbol. Would be good to have had consistency here.
+- There is a difference between the Products and the Shopping Cart price bar where the latter doesn't display/have the Currency symbol. Would be good to have had consistency here.
 - The Cart page, ideally would have a message displayed encouraging the user to add stuff to their cart, if they have navigated to this page before actually adding any products. Seems weird to display the headings/labels of the cart list, if in essence the list doesn't really exist yet. Could be currently interpreted by the user as being broken, if they've somehow forgotten that they haven't actually added anything yet.
 - As it seems like the colour scheme is prodominently red and has no green, this point is probably just my own musing/opinion, but having the Checkout button on the Shopping cart page always being red and active regardless of the cart list state, seems a little odd. I think it would be better to have the Checkout button only activate if the user has items in the list and are actually ready to checkout. This would probably have been a question asked during planning/upon seeing the designs for the first time, etc.
 
